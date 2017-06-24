@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Example Crud Kotlin</string>
+    <string name="icon_data_student_recycler_view_activity_main">icon data student recycler view activity main</string>
+    <string name="placeholder_text">-</string>
+    <string name="button_delete">Delete</string>
+    <string name="button_edit">Edit</string>
+    <string name="nim">NIM</string>
+    <string name="nama">Nama</string>
+    <string name="address">Address</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="birthday">Birthday</string>
 </resources>
