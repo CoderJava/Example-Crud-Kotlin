@@ -1,5 +1,6 @@
 package com.ysn.examplecrudkotlin.views.main
 
+import com.ysn.examplecrudkotlin.model.Student
 import com.ysn.examplecrudkotlin.views.base.View
 import com.ysn.examplecrudkotlin.views.main.adapter.AdapterDataStudentRecyclerView
 
@@ -13,5 +14,11 @@ interface MainActivityView : View {
     fun deleteAllData()
 
     fun deleteAllDataFailed()
+
+    fun  clickDelete(student: Student)
+
+    fun deleteItemFailed()
+
+    fun deleteItem()
 
 }

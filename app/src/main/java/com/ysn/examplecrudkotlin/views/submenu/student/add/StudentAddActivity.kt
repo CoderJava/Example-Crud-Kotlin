@@ -32,11 +32,11 @@ class StudentAddActivity : AppCompatActivity(), StudentAddActivityView {
     private fun initialListener() {
         floating_action_button_save_activity_student_add.setOnClickListener({
             val student = Student(
-                    nim = edit_text_student_nim_activity_student_add.text.toString(),
-                    name = edit_text_student_name_activity_student_add.text.toString(),
-                    address = edit_text_student_address_activity_student_add.text.toString(),
-                    phoneNumber = edit_text_student_phone_number_activity_student_add.text.toString(),
-                    birthday = edit_text_student_birthday_activity_student_add.text.toString()
+                    nim = text_input_edit_text_student_nim_activity_student_add.text.toString(),
+                    name = text_input_edit_text_student_name_activity_student_add.text.toString(),
+                    address = text_input_edit_text_student_address_activity_student_add.text.toString(),
+                    phoneNumber = text_input_edit_text_student_phone_number_activity_student_add.text.toString(),
+                    birthday = text_input_edit_text_student_birthday_activity_student_add.text.toString()
             )
             studentAddActivityPresenter?.onSave(this, student)
         })
@@ -61,6 +61,12 @@ class StudentAddActivity : AppCompatActivity(), StudentAddActivityView {
     }
 
     override fun save() {
+        text_input_edit_text_student_nim_activity_student_add.setText("")
+        text_input_edit_text_student_name_activity_student_add.setText("")
+        text_input_edit_text_student_address_activity_student_add.setText("")
+        text_input_edit_text_student_phone_number_activity_student_add.setText("")
+        text_input_edit_text_student_birthday_activity_student_add.setText("")
+        text_input_edit_text_student_nim_activity_student_add.requestFocus()
         Toast.makeText(this, "Data has been saved!", Toast.LENGTH_LONG)
                 .show()
     }

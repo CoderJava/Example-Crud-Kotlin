@@ -15,10 +15,10 @@ import com.ysn.examplecrudkotlin.model.Student
 class AdapterDataStudentRecyclerView : RecyclerView.Adapter<AdapterDataStudentRecyclerView.ViewHolderStudent> {
 
     private val TAG: String? = AdapterDataStudentRecyclerView::class.simpleName
-    private var listStudents: List<Student>? = null
+    private var listStudents: ArrayList<Student>? = null
     var listenerAdapterDataStudentRecyclerView: ListenerAdapterDataStudentRecyclerView? = null
 
-    constructor(listStudents: List<Student>?, listenerAdapterDataStudentRecyclerView: ListenerAdapterDataStudentRecyclerView?) : super() {
+    constructor(listStudents: ArrayList<Student>?, listenerAdapterDataStudentRecyclerView: ListenerAdapterDataStudentRecyclerView?) : super() {
         this.listStudents = listStudents
         this.listenerAdapterDataStudentRecyclerView = listenerAdapterDataStudentRecyclerView
     }
@@ -43,6 +43,17 @@ class AdapterDataStudentRecyclerView : RecyclerView.Adapter<AdapterDataStudentRe
     fun clearData() {
         listStudents = ArrayList()
         notifyDataSetChanged()
+    }
+
+    fun removeItem(student: Student) {
+        listStudents?.forEachIndexed {
+            index, studentItem ->
+            if (studentItem.nim == student.nim) {
+                listStudents?.removeAt(index)
+                notifyDataSetChanged()
+                return@forEachIndexed
+            }
+        }
     }
 
     inner class ViewHolderStudent(itemView: View?) : RecyclerView.ViewHolder(itemView) {

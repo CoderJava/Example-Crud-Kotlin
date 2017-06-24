@@ -21,7 +21,7 @@
             android:layout_height="wrap_content">
 
             <android.support.design.widget.TextInputEditText
-                android:id="@+id/edit_text_student_nim_activity_student_add"
+                android:id="@+id/text_input_edit_text_student_nim_activity_student_add"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/nim" />
@@ -34,7 +34,7 @@
             android:layout_marginTop="8dp">
 
             <android.support.design.widget.TextInputEditText
-                android:id="@+id/edit_text_student_name_activity_student_add"
+                android:id="@+id/text_input_edit_text_student_name_activity_student_add"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/nama" />
@@ -47,7 +47,7 @@
             android:layout_marginTop="8dp">
 
             <android.support.design.widget.TextInputEditText
-                android:id="@+id/edit_text_student_address_activity_student_add"
+                android:id="@+id/text_input_edit_text_student_address_activity_student_add"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/address" />
@@ -60,7 +60,7 @@
             android:layout_marginTop="8dp">
 
             <android.support.design.widget.TextInputEditText
-                android:id="@+id/edit_text_student_phone_number_activity_student_add"
+                android:id="@+id/text_input_edit_text_student_phone_number_activity_student_add"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/phone_number"
@@ -74,7 +74,7 @@
             android:layout_marginTop="8dp">
 
             <android.support.design.widget.TextInputEditText
-                android:id="@+id/edit_text_student_birthday_activity_student_add"
+                android:id="@+id/text_input_edit_text_student_birthday_activity_student_add"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/birthday" />

@@ -213,7 +213,7 @@ class DBHelper(context: Context?) : SQLiteOpenHelper(context, "Student.db", null
         return student!!
     }
 
-    fun getAllData(): List<Student> {
+    fun getAllData(): ArrayList<Student> {
         val listStudent = ArrayList<Student>()
         val sqliteDatabase = this.readableDatabase
         val queryGetAll = "select * from " + TABLE_NAME

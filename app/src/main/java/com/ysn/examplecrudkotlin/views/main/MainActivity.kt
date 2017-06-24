@@ -13,6 +13,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import com.ysn.examplecrudkotlin.R
+import com.ysn.examplecrudkotlin.model.Student
 import com.ysn.examplecrudkotlin.views.main.adapter.AdapterDataStudentRecyclerView
 import com.ysn.examplecrudkotlin.views.submenu.student.add.StudentAddActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -57,7 +58,10 @@ class MainActivity : AppCompatActivity(), MainActivityView {
                 builderAlertDialog.setTitle("Delete Data")
                 builderAlertDialog.setMessage("Are you sure to delete all data?")
                 builderAlertDialog.setPositiveButton("Yes",
-                        { dialogInterface, i -> mainActivityPresenter?.onDeleteAllData() }
+                        { _, _ -> mainActivityPresenter?.onDeleteAllData() }
+                )
+                builderAlertDialog.setNegativeButton("No",
+                        { dialogInterface, _ -> dialogInterface.dismiss() }
                 )
                 builderAlertDialog.create().show()
             }
@@ -84,7 +88,7 @@ class MainActivity : AppCompatActivity(), MainActivityView {
 
     override fun loadData(adapterDataStudentRecyclerView: AdapterDataStudentRecyclerView) {
         Log.d(TAG, "loadData view")
-        recycler_view_data_student_activity_main.layoutManager = LinearLayoutManager(this) as RecyclerView.LayoutManager?
+        recycler_view_data_student_activity_main.layoutManager = LinearLayoutManager(this)
         val dividerItemDecoration = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
         recycler_view_data_student_activity_main.addItemDecoration(dividerItemDecoration)
         recycler_view_data_student_activity_main.adapter = adapterDataStudentRecyclerView
@@ -97,6 +101,29 @@ class MainActivity : AppCompatActivity(), MainActivityView {
 
     override fun deleteAllDataFailed() {
         Toast.makeText(this, "Data has been failed to delete!", Toast.LENGTH_LONG)
+                .show()
+    }
+
+    override fun clickDelete(student: Student) {
+        val alertDialogBuilder by lazy { AlertDialog.Builder(this) }
+        alertDialogBuilder.setTitle("Delete Data")
+        alertDialogBuilder.setMessage("Are you sure to delete data ${student.name}?")
+        alertDialogBuilder.setPositiveButton("Yes", {
+            _, _ -> mainActivityPresenter?.onDeleteItem(student)
+        })
+        alertDialogBuilder.setNegativeButton("No", {
+            dialogInterface, _ -> dialogInterface.dismiss()
+        })
+        alertDialogBuilder.create().show()
+    }
+
+    override fun deleteItemFailed() {
+        Toast.makeText(this, "Delete item failed!", Toast.LENGTH_LONG)
+                .show()
+    }
+
+    override fun deleteItem() {
+        Toast.makeText(this, "Data item has been deleted!", Toast.LENGTH_LONG)
                 .show()
     }
 }
