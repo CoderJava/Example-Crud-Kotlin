@@ -21,4 +21,6 @@ interface MainActivityView : View {
 
     fun deleteItem()
 
+    fun  clickEdit(student: Student) {}
+
 }

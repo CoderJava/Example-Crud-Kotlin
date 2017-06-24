@@ -121,7 +121,7 @@ class DBHelper(context: Context?) : SQLiteOpenHelper(context, "Student.db", null
         return numRows
     }
 
-    fun updateData(student: Student): Boolean {
+    fun updateData(nim: String, student: Student): Boolean {
         try {
             val sqliteDatabase = writableDatabase
             val contentValues = ContentValues()
@@ -130,7 +130,7 @@ class DBHelper(context: Context?) : SQLiteOpenHelper(context, "Student.db", null
             contentValues.put(STUDENT_COLUMN_ADDRESS, student.address)
             contentValues.put(STUDENT_COLUMN_PHONE_NUMBER, student.phoneNumber)
             contentValues.put(STUDENT_COLUMN_BIRTHDAY, student.birthday)
-            sqliteDatabase?.update(TABLE_NAME, contentValues, STUDENT_COLUMN_ID + " = ?", arrayOf(student.nim))
+            sqliteDatabase?.update(TABLE_NAME, contentValues, STUDENT_COLUMN_NIM + " = ?", arrayOf(nim))
             sqliteDatabase?.close()
             return true
         } catch (e: Exception) {
@@ -139,16 +139,16 @@ class DBHelper(context: Context?) : SQLiteOpenHelper(context, "Student.db", null
         }
     }
 
-    fun updateData(nim: String, name: String, address: String, phoneNumber: String, birthday: String): Boolean {
+    fun updateData(nimOld: String, nimNew: String, name: String, address: String, phoneNumber: String, birthday: String): Boolean {
         try {
             val sqliteDatabase = writableDatabase
             val contentValues = ContentValues()
-            contentValues.put(STUDENT_COLUMN_NIM, nim)
+            contentValues.put(STUDENT_COLUMN_NIM, nimNew)
             contentValues.put(STUDENT_COLUMN_NAME, name)
             contentValues.put(STUDENT_COLUMN_ADDRESS, address)
             contentValues.put(STUDENT_COLUMN_PHONE_NUMBER, phoneNumber)
             contentValues.put(STUDENT_COLUMN_BIRTHDAY, birthday)
-            sqliteDatabase?.update(TABLE_NAME, contentValues, STUDENT_COLUMN_NIM + " = ?", arrayOf(nim))
+            sqliteDatabase?.update(TABLE_NAME, contentValues, STUDENT_COLUMN_NIM + " = ?", arrayOf(nimOld))
             sqliteDatabase?.close()
             return true
         } catch (e: Exception) {

@@ -1,21 +1,22 @@
 package com.ysn.examplecrudkotlin.views.main
 
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import com.ysn.examplecrudkotlin.R
+import com.ysn.examplecrudkotlin.library.RxBus
+import com.ysn.examplecrudkotlin.library.registerInBus
 import com.ysn.examplecrudkotlin.model.Student
 import com.ysn.examplecrudkotlin.views.main.adapter.AdapterDataStudentRecyclerView
 import com.ysn.examplecrudkotlin.views.submenu.student.add.StudentAddActivity
+import com.ysn.examplecrudkotlin.views.submenu.student.edit.StudentEditActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), MainActivityView {
@@ -109,10 +110,12 @@ class MainActivity : AppCompatActivity(), MainActivityView {
         alertDialogBuilder.setTitle("Delete Data")
         alertDialogBuilder.setMessage("Are you sure to delete data ${student.name}?")
         alertDialogBuilder.setPositiveButton("Yes", {
-            _, _ -> mainActivityPresenter?.onDeleteItem(student)
+            _, _ ->
+            mainActivityPresenter?.onDeleteItem(student)
         })
         alertDialogBuilder.setNegativeButton("No", {
-            dialogInterface, _ -> dialogInterface.dismiss()
+            dialogInterface, _ ->
+            dialogInterface.dismiss()
         })
         alertDialogBuilder.create().show()
     }
@@ -125,5 +128,10 @@ class MainActivity : AppCompatActivity(), MainActivityView {
     override fun deleteItem() {
         Toast.makeText(this, "Data item has been deleted!", Toast.LENGTH_LONG)
                 .show()
+    }
+
+    override fun clickEdit(student: Student) {
+        /*RxBus.send(student)*/
+        startActivity(Intent(this, StudentEditActivity::class.java).putExtra("student", student))
     }
 }

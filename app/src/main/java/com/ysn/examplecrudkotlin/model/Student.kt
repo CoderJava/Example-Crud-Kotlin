@@ -1,5 +1,7 @@
 package com.ysn.examplecrudkotlin.model
 
+import java.io.Serializable
+
 /**
  * Created by root on 17/06/17.
  */
@@ -10,4 +12,4 @@ data class Student(
         val address: String,
         val phoneNumber: String,
         val birthday: String
-        )
+        ) : Serializable

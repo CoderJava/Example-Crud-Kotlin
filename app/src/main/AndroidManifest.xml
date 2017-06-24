@@ -16,7 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".views.submenu.student.add.StudentAddActivity"></activity>
+        <activity android:name=".views.submenu.student.add.StudentAddActivity" />
+        <activity android:name=".views.submenu.student.edit.StudentEditActivity"></activity>
     </application>
 
 </manifest>

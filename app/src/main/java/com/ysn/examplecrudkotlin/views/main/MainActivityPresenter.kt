@@ -1,7 +1,6 @@
 package com.ysn.examplecrudkotlin.views.main
 
 import android.content.Context
-import android.util.Log
 import com.ysn.examplecrudkotlin.model.Student
 import com.ysn.examplecrudkotlin.views.base.Presenter
 import com.ysn.examplecrudkotlin.views.base.View
@@ -38,6 +37,7 @@ class MainActivityPresenter : Presenter<MainActivityView> {
 
             override fun onClickEdit(student: Student) {
                 // todo: onClickEdit
+                mainActivityView?.clickEdit(student)
             }
         }
         adapterDataStudentRecyclerView = AdapterDataStudentRecyclerView(
