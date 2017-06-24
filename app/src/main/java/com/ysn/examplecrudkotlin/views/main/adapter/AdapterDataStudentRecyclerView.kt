@@ -40,6 +40,11 @@ class AdapterDataStudentRecyclerView : RecyclerView.Adapter<AdapterDataStudentRe
         return listStudents!!.size
     }
 
+    fun clearData() {
+        listStudents = ArrayList()
+        notifyDataSetChanged()
+    }
+
     inner class ViewHolderStudent(itemView: View?) : RecyclerView.ViewHolder(itemView) {
 
         var textViewStudentNameViewHolderStudent: TextView = itemView?.findViewById(R.id.text_view_student_name_item_data_student_recycler_view_activity_main) as TextView

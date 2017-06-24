@@ -1,7 +1,9 @@
 package com.ysn.examplecrudkotlin.views.main
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
@@ -9,6 +11,7 @@ import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import com.ysn.examplecrudkotlin.R
 import com.ysn.examplecrudkotlin.views.main.adapter.AdapterDataStudentRecyclerView
 import com.ysn.examplecrudkotlin.views.submenu.student.add.StudentAddActivity
@@ -50,6 +53,13 @@ class MainActivity : AppCompatActivity(), MainActivityView {
             }
             R.id.menu_main_delete_all_data -> {
                 // todo: delete all data
+                val builderAlertDialog = AlertDialog.Builder(this)
+                builderAlertDialog.setTitle("Delete Data")
+                builderAlertDialog.setMessage("Are you sure to delete all data?")
+                builderAlertDialog.setPositiveButton("Yes",
+                        { dialogInterface, i -> mainActivityPresenter?.onDeleteAllData() }
+                )
+                builderAlertDialog.create().show()
             }
             else -> {
                 return super.onOptionsItemSelected(item)
@@ -78,5 +88,15 @@ class MainActivity : AppCompatActivity(), MainActivityView {
         val dividerItemDecoration = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
         recycler_view_data_student_activity_main.addItemDecoration(dividerItemDecoration)
         recycler_view_data_student_activity_main.adapter = adapterDataStudentRecyclerView
+    }
+
+    override fun deleteAllData() {
+        Toast.makeText(this, "Data has been deleted!", Toast.LENGTH_LONG)
+                .show()
+    }
+
+    override fun deleteAllDataFailed() {
+        Toast.makeText(this, "Data has been failed to delete!", Toast.LENGTH_LONG)
+                .show()
     }
 }

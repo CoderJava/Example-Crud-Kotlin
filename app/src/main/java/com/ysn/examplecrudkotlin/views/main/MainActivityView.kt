@@ -10,4 +10,8 @@ interface MainActivityView : View {
 
     fun loadData(adapterDataStudentRecyclerView: AdapterDataStudentRecyclerView)
 
+    fun deleteAllData()
+
+    fun deleteAllDataFailed()
+
 }

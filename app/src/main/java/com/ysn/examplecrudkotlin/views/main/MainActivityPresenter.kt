@@ -16,6 +16,8 @@ class MainActivityPresenter : Presenter<MainActivityView> {
     private val TAG: String? = MainActivityPresenter::class.simpleName
     private var mainActivityView: MainActivityView? = null
     private var dbHelper: DBHelper? = null
+    private var context: Context? = null
+    private lateinit var adapterDataStudentRecyclerView: AdapterDataStudentRecyclerView
 
     override fun onAttach(view: View) {
         mainActivityView = view as MainActivityView
@@ -26,6 +28,7 @@ class MainActivityPresenter : Presenter<MainActivityView> {
     }
 
     fun onLoadData(context: Context) {
+        this.context = context
         initDbHelper(context)
         val listDataStudent = dbHelper?.getAllData()
         val listenerAdapterDataStudentRecyclerView = object : AdapterDataStudentRecyclerView.ListenerAdapterDataStudentRecyclerView {
@@ -37,7 +40,7 @@ class MainActivityPresenter : Presenter<MainActivityView> {
                 // todo: onClickEdit
             }
         }
-        val adapterDataStudentRecyclerView = AdapterDataStudentRecyclerView(
+        adapterDataStudentRecyclerView = AdapterDataStudentRecyclerView(
                 listStudents = listDataStudent,
                 listenerAdapterDataStudentRecyclerView = listenerAdapterDataStudentRecyclerView
         )
@@ -45,6 +48,19 @@ class MainActivityPresenter : Presenter<MainActivityView> {
     }
 
     private fun initDbHelper(context: Context) {
-        dbHelper = DBHelper(context)
+        if (dbHelper == null) {
+            dbHelper = DBHelper(context)
+        }
+    }
+
+    fun onDeleteAllData() {
+        initDbHelper(context = context!!)
+        val execDeleteAll = dbHelper?.deleteAllData() as Boolean
+        if (execDeleteAll) {
+            adapterDataStudentRecyclerView.clearData()
+            mainActivityView?.deleteAllData()
+        } else {
+            mainActivityView?.deleteAllDataFailed()
+        }
     }
 }
